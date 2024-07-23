@@ -45,7 +45,7 @@ function calculateClipPercentage(section: HTMLElement) {
 
   // Calculate the percentage for the clip-path
   // We multiply by 100 to convert to percentage and add some extra to ensure full coverage
-  const clipPercentage = (radius / Math.min(sectionWidth, sectionHeight)) * 100;
+  const clipPercentage = (radius / Math.min(screenWidth, screenHeight)) * 100;
 
   return clipPercentage;
 }
