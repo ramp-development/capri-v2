@@ -24,28 +24,12 @@ export const home = () => {
 
   timeline.fromTo(
     topLayer,
-    { clipPath: 'circle(0% at 50% 50%)' },
-    { clipPath: `circle(${calculateClipPercentage(thinking)}% at 50% 50%)` }
+    { clipPath: 'circle(0px at 50% 50%)' },
+    { clipPath: `circle(${clipDistance(thinking)}px at 50% 50%)` }
   );
 };
 
-function calculateClipPercentage(section: HTMLElement) {
-  // Get the dimensions of the section
+function clipDistance(section: HTMLElement) {
   const rect = section.getBoundingClientRect();
-  const sectionWidth = rect.width;
-  const sectionHeight = rect.height;
-
-  // Calculate the diagonal of the screen
-  const screenWidth = window.innerWidth;
-  const screenHeight = window.innerHeight;
-  const diagonal = Math.sqrt(screenWidth * screenWidth + screenHeight * screenHeight);
-
-  // Calculate the radius (half of the diagonal)
-  const radius = diagonal / 2;
-
-  // Calculate the percentage for the clip-path
-  // We multiply by 100 to convert to percentage and add some extra to ensure full coverage
-  const clipPercentage = (radius / Math.min(screenWidth, screenHeight)) * 100;
-
-  return clipPercentage;
+  return Math.sqrt(Math.pow(rect.width, 2) + Math.pow(rect.height, 2)) / 2;
 }
