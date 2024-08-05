@@ -11,7 +11,8 @@ export const home = () => {
   if (!thinking) return;
 
   const topLayer = queryElement<HTMLDivElement>('.is-top', thinking);
-  if (!topLayer) return;
+  const about2 = queryElement<HTMLDivElement>('.about-2', thinking);
+  if (!topLayer || !about2) return;
 
   const timeline = gsap.timeline({
     scrollTrigger: {
@@ -19,14 +20,33 @@ export const home = () => {
       start: 'top top',
       end: 'bottom bottom',
       scrub: 1,
+      markers: true,
     },
+    defaults: { ease: 'power2.inOut', duration: 1 },
   });
 
-  timeline.fromTo(
-    topLayer,
-    { clipPath: 'circle(0px at 50% 50%)' },
-    { clipPath: `circle(${clipDistance(thinking)}px at 50% 50%)` }
-  );
+  timeline
+    .to('[data-reveal="span1"]', { xPercent: -100, opacity: 0 }, 0)
+    .to('[data-reveal="span2"]', { xPercent: 100, opacity: 0 }, 0)
+    .fromTo(
+      topLayer,
+      { clipPath: 'circle(0px at 50% 50%)' },
+      { clipPath: `circle(${clipDistance(thinking)}px at 50% 50%)` },
+      0
+    )
+    .from(about2, { opacity: 0 }, 0.5)
+    .fromTo(
+      '[data-reveal="magnify1"]',
+      { scale: 1.333333333333, opacity: 1 },
+      { scale: 1, opacity: 0.1 },
+      '-=0.5'
+    )
+    .fromTo(
+      '[data-reveal="magnify2"]',
+      { scale: 1, opacity: 0.1 },
+      { scale: 1.333333333333, opacity: 1 },
+      '<'
+    );
 };
 
 function clipDistance(section: HTMLElement) {
