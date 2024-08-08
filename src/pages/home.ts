@@ -20,32 +20,28 @@ export const home = () => {
       start: 'top top',
       end: 'bottom bottom',
       scrub: 1,
-      markers: true,
+      // markers: true,
     },
     defaults: { ease: 'power2.inOut', duration: 1 },
   });
 
   timeline
-    .from('[data-reveal="thinking"]', { translateX: -100 }, 0)
-    .from('[data-reveal="creative"]', { translateX: 100 }, 0)
+    .from('[data-reveal="thinking"]', { translateX: -100, duration: 1.5 }, 0)
+    .from('[data-reveal="creative"]', { translateX: 100, duration: 1.5 }, 0)
     .fromTo(
       topLayer,
       { clipPath: 'circle(0px at 50% 50%)' },
       { clipPath: `circle(${clipDistance(thinking)}px at 50% 50%)` },
-      0
+      0.5
     )
     .to('[data-reveal="span1"]', { yPercent: -100 }, '-=0.25')
     .to('[data-reveal="span2"]', { yPercent: -100 }, '<0.1')
     .from(about2, { opacity: 0 }, '<')
-    .fromTo(
-      '[data-reveal="magnify1"]',
-      { scale: 1.333333333333, opacity: 1 },
-      { scale: 1, opacity: 0.1 }
-    )
+    .fromTo('[data-reveal="magnify1"]', { scale: 10 / 9, opacity: 1 }, { scale: 1, opacity: 0.1 })
     .fromTo(
       '[data-reveal="magnify2"]',
       { scale: 1, opacity: 0.1 },
-      { scale: 1.333333333333, opacity: 1 },
+      { scale: 10 / 9, opacity: 1 },
       '<'
     );
 };
