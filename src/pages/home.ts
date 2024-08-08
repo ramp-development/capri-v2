@@ -26,20 +26,21 @@ export const home = () => {
   });
 
   timeline
-    .to('[data-reveal="span1"]', { xPercent: -100, opacity: 0 }, 0)
-    .to('[data-reveal="span2"]', { xPercent: 100, opacity: 0 }, 0)
+    .from('[data-reveal="thinking"]', { translateX: -100 }, 0)
+    .from('[data-reveal="creative"]', { translateX: 100 }, 0)
     .fromTo(
       topLayer,
       { clipPath: 'circle(0px at 50% 50%)' },
       { clipPath: `circle(${clipDistance(thinking)}px at 50% 50%)` },
       0
     )
-    .from(about2, { opacity: 0 }, 0.5)
+    .to('[data-reveal="span1"]', { yPercent: -100 }, '-=0.25')
+    .to('[data-reveal="span2"]', { yPercent: -100 }, '<0.1')
+    .from(about2, { opacity: 0 }, '<')
     .fromTo(
       '[data-reveal="magnify1"]',
       { scale: 1.333333333333, opacity: 1 },
-      { scale: 1, opacity: 0.1 },
-      '-=0.5'
+      { scale: 1, opacity: 0.1 }
     )
     .fromTo(
       '[data-reveal="magnify2"]',
