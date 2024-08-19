@@ -1,4 +1,5 @@
 import { buttons } from './buttons';
+import { contact } from './contact';
 import { footer } from './footer';
 
 export const components = () => {
@@ -6,5 +7,6 @@ export const components = () => {
   console.log('components');
 
   buttons();
+  contact();
   footer();
 };

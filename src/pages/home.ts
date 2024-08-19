@@ -17,7 +17,7 @@ export const home = () => {
   const timeline = gsap.timeline({
     scrollTrigger: {
       trigger: thinking,
-      start: 'top top',
+      start: 'top bottom',
       end: 'bottom bottom',
       scrub: 1,
       // markers: true,
@@ -26,8 +26,8 @@ export const home = () => {
   });
 
   timeline
-    .from('[data-reveal="thinking"]', { translateX: -100, duration: 1.5 }, 0)
-    .from('[data-reveal="creative"]', { translateX: 100, duration: 1.5 }, 0)
+    .from('[data-reveal="thinking"]', { xPercent: -100, duration: 1.5 }, 0)
+    .from('[data-reveal="creative"]', { xPercent: 100, duration: 1.5 }, 0)
     .fromTo(
       topLayer,
       { clipPath: 'circle(0px at 50% 50%)' },
