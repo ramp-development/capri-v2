@@ -1,4 +1,5 @@
 import { buttons } from './buttons';
+import { circularMarquee } from './circular-marquee';
 import { contact } from './contact';
 import { footer } from './footer';
 
@@ -7,6 +8,7 @@ export const components = () => {
   console.log('components');
 
   buttons();
+  circularMarquee();
   contact();
   footer();
 };
