@@ -9,6 +9,7 @@ export const circularMarquee = () => {
   if (!component) return;
 
   const list = queryElement('[data-circular-marquee="list"]');
+  if (!list) return;
 
   let tl: gsap.core.Timeline | null = null;
   let originalHTML = '';
@@ -42,12 +43,7 @@ export const circularMarquee = () => {
     const totalSlotsNeeded = Math.floor(circumference / firstItemHeight);
     const duplicationsNeeded = Math.floor(totalSlotsNeeded / originalItems.length);
 
-    // Calculate width of list
-    const maxItemWidth = originalItems.reduce((max, items) => {
-      return Math.max(max, items.offsetWidth);
-    }, -Infinity);
-
-    list.style.width = `${maxItemWidth}px`;
+    list.style.width = `${list.offsetWidth}px`;
 
     // Clone and append lists
     const clone = list.cloneNode(true);
